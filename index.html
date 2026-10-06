@@ -164,6 +164,18 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem;border-top:1p
     </div>
   </section>
 
+
+  <section class="reel" aria-labelledby="song-h">
+    <video controls playsinline preload="metadata" poster="video/birthday-song.jpg">
+      <source src="video/birthday-song.mp4" type="video/mp4">
+    </video>
+    <div class="reel-text">
+      <div class="eyebrow">Made just for her</div>
+      <h2 id="song-h">Aayushi&rsquo;s birthday song</h2>
+      <p>&ldquo;O our lovely girl with a magic smile, we wish you happy birthday.&rdquo; A song written for Aayushi, by @dragontunes23.</p>
+    </div>
+  </section>
+
   <section class="programme" aria-labelledby="prog-h">
     <div class="eyebrow" id="prog-h">Six events, six dress codes</div>
     <ol>
@@ -177,7 +189,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem;border-top:1p
   </section>
 
   <section class="night moon" id="moonlight">
-    <div class="poster"><img src="img/poster-1.jpg" alt="Moonlight Snow White poster"><div><div class="eyebrow when">1 Oct · After-party</div><h2>Moonlight Snow White</h2><p class="code">Dress code: <em>all white</em>. Everyone landed, checked in and turned up in white.</p><blockquote class="rhyme"><b>Aayushi&rsquo;s welcome</b><span>Khoob jamega rang, jab mil baithenge hum sang,<br>chahe taaron bhari raat mein, ya kaale baadlon ki barsaat mein!!</span><cite>&mdash; Aayushi, on the group</cite></blockquote></div></div>
+    <div class="poster"><img src="img/poster-1.jpg" alt="Moonlight Snow White poster"><div><div class="eyebrow when">1 Oct · After-party</div><h2>Moonlight Snow White</h2><p class="code">Dress code: <em>all white</em>. Everyone landed, checked in and turned up in white.</p><blockquote class="rhyme"><b>Aayushi&rsquo;s welcome</b><span>Khoob jamega rang,<br>Jab mil baithenge hum sang,<br>Chahe taaron bhari raat mein,<br>Ya kaale baadlon ki barsaat mein!</span><cite>&mdash; Aayushi, on the group</cite></blockquote></div></div>
     <div class="grid">
       <figure class="w3"><img src="img/moon-1.jpg" alt="Guests in white arriving at the hotel lobby" loading="lazy"></figure>
       <figure class="w3"><img src="img/moon-2.jpg" alt="Welcome gathering in the lobby" loading="lazy"></figure>
@@ -295,7 +307,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem;border-top:1p
 <button class="song-btn" id="song-btn" type="button" aria-pressed="false"><span class="note" aria-hidden="true">&#9835;</span><span id="song-label">Play birthday song</span></button>
 <script>
 (function(){
-  var a=document.getElementById("song"), b=document.getElementById("song-btn"), l=document.getElementById("song-label"), userPaused=false, vid=document.querySelector(".reel video");
+  var a=document.getElementById("song"), b=document.getElementById("song-btn"), l=document.getElementById("song-label"), userPaused=false, vids=document.querySelectorAll("video");
   function ui(){var on=!a.paused; b.setAttribute("aria-pressed",on?"true":"false"); l.textContent=on?"Pause song":"Play birthday song";}
   function start(){ if(userPaused) return; var p=a.play(); if(p&&p.catch) p.catch(function(){}); }
   a.addEventListener("play",ui); a.addEventListener("pause",ui);
@@ -304,7 +316,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem;border-top:1p
     window.addEventListener(ev,function once(e){ if(e.target&&e.target.closest&&e.target.closest("#song-btn")) return; if(a.paused) start(); window.removeEventListener(ev,once,true); },{capture:true,passive:true});
   });
   b.addEventListener("click",function(){ if(a.paused){userPaused=false; start();} else {userPaused=true; a.pause();} });
-  if(vid){ var wasOn=false; vid.addEventListener("play",function(){ wasOn=!a.paused; a.pause(); }); vid.addEventListener("pause",function(){ if(wasOn&&!userPaused) start(); }); }
+  var wasOn=false; [].forEach.call(vids,function(v){ v.addEventListener("play",function(){ if(!a.paused) wasOn=true; a.pause(); }); v.addEventListener("pause",function(){ if(wasOn&&!userPaused){ wasOn=false; start(); } }); });
 })();
 </script>
 </body>

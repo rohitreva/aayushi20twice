@@ -45,6 +45,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .cta{display:inline-flex;align-items:center;gap:10px;justify-self:start;padding:13px 22px;border:1px solid var(--gold);color:var(--night);background:var(--gold);text-decoration:none;font-weight:600;border-radius:2px}
 .cta:hover{background:transparent;color:var(--gold)}
 
+
+/* highlight reel */
+.reel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:center;padding-block:clamp(28px,5vw,56px);border-top:1px solid var(--line)}
+.reel video{width:100%;max-width:360px;aspect-ratio:9/16;background:#000;border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.45);justify-self:center}
+.reel h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.05}
+.reel p{color:var(--muted);margin:10px 0 0;max-width:46ch}
+@media (max-width:820px){.reel{grid-template-columns:minmax(0,1fr)}.reel .reel-text{order:-1}}
+
 /* programme index */
 .programme{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:28px}
 .programme ol{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:18px}
@@ -100,7 +108,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem;border-top:1p
   <header class="hero">
     <div class="eyebrow">Phuket · Thailand</div>
     <h1>Aayushi turns <em>20</em> twice</h1>
-    <p>Four days, six dress codes, one catamaran, a jungle birthday and thirty people who will not stop talking about it. A keepsake of the trip Aayushi and Raghav ji planned for all of us.</p>
+    <p>Four days, six dress codes, one catamaran, a jungle birthday and thirty people who will not stop talking about it. A keepsake of Aayushi's birthday trip.</p>
     <div class="meta">
       <span><b>1–4</b> October 2026</span>
       <span><b>6</b> themed nights</span>
@@ -109,8 +117,20 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem;border-top:1p
     <a class="cta" href="https://photos.app.goo.gl/fM5kSG7pDo7d7PoL9" target="_blank" rel="noopener">Open the full album ↗</a>
   </header>
 
+
+  <section class="reel" aria-labelledby="reel-h">
+    <video controls playsinline preload="metadata" poster="video/poster.jpg">
+      <source src="video/highlights.mp4" type="video/mp4">
+    </video>
+    <div class="reel-text">
+      <div class="eyebrow">One minute of Phuket</div>
+      <h2 id="reel-h">The highlights</h2>
+      <p>From the white night to the cake, in sixty-four seconds. Turn the sound on.</p>
+    </div>
+  </section>
+
   <section class="programme" aria-labelledby="prog-h">
-    <div class="eyebrow" id="prog-h">The programme they planned</div>
+    <div class="eyebrow" id="prog-h">Six nights, six dress codes</div>
     <ol>
       <li><a href="#moonlight"><img src="img/poster-1.jpg" alt="Moonlight Snow White dress-code poster"><small>1 Oct · After-party</small><strong>Moonlight Snow White</strong></a></li>
       <li><a href="#bluelagoon"><img src="img/poster-2.jpg" alt="Blue Lagoon dress-code poster"><small>2 Oct · Morning</small><strong>Blue Lagoon</strong></a></li>
@@ -185,7 +205,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem;border-top:1p
   <section class="thanks" aria-labelledby="thanks-h">
     <div class="eyebrow">From all of us</div>
     <h2 id="thanks-h">Thank you, Aayushi &amp; Raghav ji</h2>
-    <p>For the posters, the rooms, the catamaran, the club, the jungle and every detail in between. Happy birthday, Aayushi. Twenty, twice, and looking forward to the next trip together.</p>
+    <p>For the catamaran, the club, the beach, the jungle and every detail in between. Happy birthday, Aayushi. Twenty, twice, and looking forward to the next trip together.</p>
     <div class="closing-photos">
       <img src="img/bye-1.jpg" alt="The farewell lunch table" loading="lazy">
       <img src="img/bye-2.jpg" alt="The whole group together before flying home" loading="lazy">

@@ -264,9 +264,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem;border-top:1p
   var FORM="https://docs.google.com/forms/d/e/1FAIpQLScueV94BbzQxd1R6a8ZIMSW04z-VWOxl2UmAT2PjUA3LziGjw/formResponse";
   var CSV="https://docs.google.com/spreadsheets/d/e/2PACX-1vQonyMgiTpPuDuPFbGRDS7ESGbCWErUXWmpkhHGBUkQ3jOBaY8tB8Tu3mJ6w381OiGjW_eFOFjAL85R/pub?output=csv";
   var wall=document.getElementById("wall"), form=document.getElementById("wish-form"), status=document.getElementById("wish-status"), btn=document.getElementById("wish-send");
-  function parseCSV(t){var rows=[],row=[],f="",q=false;for(var i=0;i<t.length;i++){var c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}else if(c=='"')q=true;else if(c==','){row.push(f);f=""}else if(c=='
-'){row.push(f);rows.push(row);row=[];f=""}else if(c!='
-')f+=c}if(f||row.length){row.push(f);rows.push(row)}return rows}
+  function parseCSV(t){var rows=[],row=[],f="",q=false;for(var i=0;i<t.length;i++){var c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}else if(c=='"')q=true;else if(c==','){row.push(f);f=""}else if(c=='\n'){row.push(f);rows.push(row);row=[];f=""}else if(c!='\r')f+=c}if(f||row.length){row.push(f);rows.push(row)}return rows}
   function card(name,text){var fig=document.createElement("figure"),bq=document.createElement("blockquote"),cap=document.createElement("figcaption");bq.textContent=text;cap.textContent="— "+name;fig.appendChild(bq);if(name)fig.appendChild(cap);return fig}
   var pending=[];
   function render(list){wall.textContent="";var all=pending.concat(list);if(!all.length){wall.appendChild(card("", "Wishes appear here. Be the first to write one.")).className="empty";return}all.forEach(function(w){wall.appendChild(card(w.name,w.text))})}
